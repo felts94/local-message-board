@@ -7,7 +7,8 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"strings"
+
+	"github.com/felts94/local-message-board/location"
 )
 
 type region map[string]city
@@ -22,6 +23,13 @@ type post struct {
 	Message string `json:"message"`
 	Author  string `json:"author"`
 	Link    string `json:"link"`
+}
+
+// Echo headers and info
+type Echo struct {
+	Headers http.Header   `json:"headers"`
+	IP      string        `json:"ip"`
+	Info    location.Info `json:"info"`
 }
 
 var data map[string]region
@@ -61,7 +69,7 @@ func main() {
 }
 
 func setLogging() {
-	logfile := "info.log"
+	logfile := "/dev/stdout"
 	lf, err := os.OpenFile(logfile, os.O_WRONLY|os.O_CREATE|os.O_APPEND, 0640)
 
 	if err != nil {
@@ -89,7 +97,8 @@ func importJSONDataFromFile(fileName string, result interface{}) (isOK bool) {
 }
 
 func read(w http.ResponseWriter, r *http.Request) {
-	info := GetUserLocation(r.RemoteAddr)
+	info := location.GetUserLocation(r.RemoteAddr)
+	log.Printf("%v", info)
 	return
 }
 
@@ -100,9 +109,7 @@ func postMessage(w http.ResponseWriter, r *http.Request) {
 func info(w http.ResponseWriter, r *http.Request) {
 	log.Printf("[%s] %s %s", r.RemoteAddr, r.Method, r.URL)
 
-	s := strings.Split(r.RemoteAddr, ":")
-
-	info := GetUserLocation(r.RemoteAddr)
+	info := location.GetUserLocation(r.RemoteAddr)
 	log.Printf("[%s] Local: %v", r.RemoteAddr, info)
 
 	response := Echo{
