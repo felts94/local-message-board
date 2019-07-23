@@ -1,0 +1,50 @@
+{
+    "Virginia": {
+        "Alexandria": {
+            "posts": [
+                {
+                    "title": "Hello, Alexandria",
+                    "message": "This is a sample",
+                    "author": "James Doler",
+                    "link": "http://kfelter.com"
+                }
+            ],
+            "info": "Historical Oldtown"
+        },
+        "Blacksburg": {
+            "posts": [
+                {
+                    "title": "Hello, Blacksburg",
+                    "message": "This is a sample",
+                    "author": "James Doler",
+                    "link": "http://kfelter.com"
+                }
+            ],
+            "info": "Virginia Tech"
+        }
+    },
+    "Maryland":{
+        "Baltimore":{
+            "posts": [
+                {
+                    "title": "Hello, Baltimore",
+                    "message": "This is a sample",
+                    "author": "James Doler",
+                    "link": "http://kfelter.com"
+                }
+            ],
+            "info": "Ravens"
+        },
+        "Edgewater": {
+            "posts": [
+                {
+                    "title": "Hello, Edgewater",
+                    "message": "This is a sample",
+                    "author": "James Doler",
+                    "link": "http://kfelter.com"
+                }
+            ],
+            "info": "South River High School"
+        }
+    }
+}
